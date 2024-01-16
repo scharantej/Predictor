@@ -1,0 +1,32 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fantasy Premier League Predictor</title>
+</head>
+<body>
+<h1>Fantasy Premier League Predictor</h1>
+<p>Welcome to the Fantasy Premier League Predictor! Here, you can predict the scores for upcoming fixtures and compete with other users to see who can earn the most points.</p>
+
+<h2>Latest Fixtures</h2>
+<ul>
+{% for fixture in fixtures %}
+<li>{{ fixture['kickoff_time'] }} - {{ fixture['team_h']['name'] }} vs {{ fixture['team_a']['name'] }}</li>
+{% endfor %}
+</ul>
+
+<h2>Predict Scores</h2>
+<form action="/predict_scores" method="POST">
+{% for fixture in fixtures %}
+<label for="{{ fixture['id'] }}">{{ fixture['team_h']['name'] }} vs {{ fixture['team_a']['name'] }}</label>
+<input type="number" name="{{ fixture['id'] }}">
+{% endfor %}
+<input type="submit" value="Submit">
+</form>
+</body>
+</html>
+
+
